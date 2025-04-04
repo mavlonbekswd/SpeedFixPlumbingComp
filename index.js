@@ -1,10 +1,5 @@
   // 1. Mobile nav toggle
-  const toggleBtn = document.getElementById('menu-toggle');
-  const navLinks = document.getElementById('nav-links');
-
-  toggleBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
+  
 
 
 // 2. Scroll to Top
@@ -74,3 +69,19 @@ status.style.display = 'block';
 // 5. Language switch
 // 6. Modal handling
 // 7. Gallery lightbox
+
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      const filter = this.getAttribute("data-filter");
+      document.querySelectorAll(".gallery-item").forEach(item => {
+        if (filter === "all" || item.classList.contains(filter)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });

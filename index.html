@@ -9,22 +9,27 @@
 </head>
 <body>
 
-    <header class="site-header" id="top">
+    <header class="navbar">
         <div class="container nav-container">
-          <h1 class="logo">SpeedFixPlumbing</h1>
+            <a href="#" class="logo">SpeedFixPlumbing</a>
           
-          <nav class="navbar">
-            <ul class="nav-links" id="nav-links">
-              <li><a href="#services">Services</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-              <li><a href="#gallery">Gallery</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-            
-            <button class="menu-toggle" id="menu-toggle">&#9776;</button>
-          </nav>
-        </div>
+            <button class="nav-toggle" id="navToggle">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </button>
+          
+            <nav class="nav-menu" id="navMenu">
+              <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+          
       </header>
       
 
@@ -116,12 +121,27 @@
    
   <section id="gallery" class="gallery">
     <div class="container">
-      <h2>Our Work</h2>
+      <h2 class="section-title">Our Work</h2>
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="bathroom">Bathroom</button>
+        <button class="filter-btn" data-filter="pipes">Pipes</button>
+        <button class="filter-btn" data-filter="heaters">Heaters</button>
+      </div>
+  
       <div class="gallery-grid">
-        <img src="./img/img5.jpg" alt="Job 1">
-        <img src="./img/img4.jpg" alt="Job 2">
-        <img src="./img/img3.jpg" alt="Job 3">
-        <img src="./img/img1.jpg" alt="Job 4">
+        <div class="gallery-item bathroom">
+          <img src="./img/img1.jpg" alt="Shower repair" loading="lazy">
+        </div>
+        <div class="gallery-item bathroom">
+          <img src="./img/img2.jpg" alt="Sink installation" loading="lazy">
+        </div>
+        <div class="gallery-item pipes">
+          <img src="./img/img3.jpg" alt="Pipe fix" loading="lazy">
+        </div>
+        <div class="gallery-item heaters">
+          <img src="./img/img1.jpg" alt="Heater tap" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
