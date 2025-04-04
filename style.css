@@ -169,22 +169,22 @@
     transition: all 0.3s ease;
   }
   
-  .primary-btn {
+  .secondary-btn {
     background-color: #ffc300;
     color: #003d5b;
   }
   
-  .primary-btn:hover {
+  .secondary-btn:hover {
     background-color: #e6b200;
   }
   
-  .secondary-btn {
+  .primary-btn {
     border: 2px solid #ffc300;
     color: #ffc300;
     background: transparent;
   }
   
-  .secondary-btn:hover {
+  .primary-btn:hover {
     background-color: #ffc300;
     color: #003d5b;
   }
