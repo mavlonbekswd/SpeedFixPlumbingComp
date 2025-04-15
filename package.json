@@ -1,0 +1,20 @@
+{
+  "name": "plumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server",
+    "sass": "sass scss/main.scss css/main.css --watch",
+    "dev": "concurrently \"npm run start\" \"npm run sass\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "concurrently": "^9.1.2",
+    "live-server": "^1.2.2",
+    "sass": "^1.71.0"
+  }
+}

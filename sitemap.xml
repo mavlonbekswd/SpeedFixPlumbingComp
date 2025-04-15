@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   
   <!-- Home Page -->
   <url>
     <loc>https://speedfixplumbing.co.uk/</loc>
-    <lastmod>2025-04-04</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2024-04-04</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://speedfixplumbing.co.uk/assets/images/hero-bg.jpg</image:loc>
+      <image:title>SpeedFix Plumbing - Professional Plumbing Services</image:title>
+    </image:image>
   </url>
 
   <!-- Services -->
   <url>
     <loc>https://speedfixplumbing.co.uk/#services</loc>
-    <lastmod>2025-04-04</lastmod>
+    <lastmod>2024-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://speedfixplumbing.co.uk/assets/images/services/plumbing.jpg</image:loc>
+      <image:title>Professional Plumbing Services</image:title>
+    </image:image>
   </url>
 
   <!-- About -->
   <url>
     <loc>https://speedfixplumbing.co.uk/#about</loc>
-    <lastmod>2025-04-04</lastmod>
+    <lastmod>2024-04-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://speedfixplumbing.co.uk/assets/images/about/team.jpg</image:loc>
+      <image:title>Our Professional Team</image:title>
+    </image:image>
   </url>
 
   <!-- Testimonials -->
   <url>
     <loc>https://speedfixplumbing.co.uk/#testimonials</loc>
-    <lastmod>2025-04-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2024-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Contact -->
   <url>
     <loc>https://speedfixplumbing.co.uk/#contact</loc>
-    <lastmod>2025-04-04</lastmod>
+    <lastmod>2024-04-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -44,9 +58,29 @@
   <!-- Gallery -->
   <url>
     <loc>https://speedfixplumbing.co.uk/#gallery</loc>
-    <lastmod>2025-04-04</lastmod>
+    <lastmod>2024-04-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://speedfixplumbing.co.uk/assets/images/gallery/plumbing-work-1.jpg</image:loc>
+      <image:title>Our Plumbing Projects Gallery</image:title>
+    </image:image>
+  </url>
+
+  <!-- Emergency Services -->
+  <url>
+    <loc>https://speedfixplumbing.co.uk/#emergency</loc>
+    <lastmod>2024-04-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://speedfixplumbing.co.uk/blog</loc>
+    <lastmod>2024-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

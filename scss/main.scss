@@ -1,0 +1,26 @@
+// Import base styles
+@use './base/reset' as *;
+@use 'base/typography' as *;
+@use 'base/variables' as *;
+@use 'base/utilities' as *;
+
+// Import global styles
+@use 'global';
+// @use './_base/variables';
+// @use './_base/import';
+
+// Import pages
+@use '_pages/_home/home' as home-page;
+@use '_pages/_services/servicess' as services-page;
+@use '_pages/_home/_services' as home-services;
+@use '_pages/_about/about' as home-about;
+@use '_pages/_home/_why-choose-us';
+@use '_pages/_home/_about';
+@use '_pages/_home/_faq';
+@use '_pages/_contact/contact' as contact-page;
+
+// Import components
+@use './components/button';
+@use './components/form';
+@use './components/card';
+@use './components/modal';

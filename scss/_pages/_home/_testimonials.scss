@@ -1,0 +1,219 @@
+@use '../../base/variables' as *;
+
+.testimonials-section {
+  padding: var(--spacing-2xl) 0;
+  background: linear-gradient(135deg, var(--navy) 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--amber) 2px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.1;
+    animation: floatBackground 5s linear infinite;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background-image:
+      linear-gradient(45deg, transparent 48%, var(--amber) 48%, var(--amber) 52%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, var(--amber) 48%, var(--amber) 52%, transparent 52%);
+    opacity: 0.2;
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    padding: 0 var(--spacing-md);
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+
+    h2 {
+      color: var(--white);
+      font-size: var(--fs-3xl);
+      font-weight: var(--font-bold);
+      margin-bottom: var(--spacing-sm);
+
+      span {
+        color: var(--amber);
+      }
+    }
+
+    p {
+      color: var(--white);
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 2px;
+      background: var(--amber);
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      left: 20%;
+    }
+
+    &::after {
+      right: 20%;
+    }
+  }
+
+  .swiper {
+    padding-bottom: 2rem;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: var(--spacing-lg);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 350px;
+    width: 100%;
+    position: relative;
+
+    &::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 80px;
+      color: var(--amber);
+      font-family: serif;
+      opacity: 0.5;
+      line-height: 1;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+      .client-info__image {
+        border-color: var(--amber);
+      }
+    }
+
+    &__content p {
+      color: var(--white);
+      font-size: var(--fs-md);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: var(--spacing-md);
+
+      &__image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--amber);
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__text h4 {
+        color: var(--amber);
+        font-weight: var(--font-semibold);
+        margin-bottom: 4px;
+      }
+
+      &__text p {
+        color: var(--white);
+        opacity: 0.8;
+        font-size: var(--fs-sm);
+      }
+
+      &__rating {
+        margin-left: auto;
+        display: flex;
+        gap: 2px;
+        color: var(--amber);
+        i {
+          font-size: var(--fs-md);
+        }
+      }
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: var(--amber);
+  }
+}
+
+@keyframes floatBackground {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: var(--spacing-xl) var(--spacing-sm);
+
+    &__header {
+      h2 { font-size: var(--fs-xl); }
+      p { font-size: var(--fs-sm); }
+
+      &::before, &::after {
+        width: 50px;
+      }
+    }
+
+    .testimonial-card {
+      padding: var(--spacing-md);
+
+      &__content p {
+        font-size: var(--fs-sm);
+      }
+
+      .client-info {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__rating {
+          margin-left: 0;
+          margin-top: var(--spacing-sm);
+        }
+      }
+    }
+  }
+}

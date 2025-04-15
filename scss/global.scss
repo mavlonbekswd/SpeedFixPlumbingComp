@@ -1,0 +1,223 @@
+@use 'base/variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
+:root {
+  /* 🎨 Colors */
+  --charcoal: #284b63;
+  --amber: #f6bd60;
+  --beige: #eae5cf;
+  --navy: #13315c;
+  --light-navy: #2a4d69;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ✍️ Typography */
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* 📐 Font sizes */
+  --fs-sm: 0.875rem;   /* 14px */
+  --fs-base: 1rem;     /* 16px */
+  --fs-md: 1.25rem;    /* 20px */
+  --fs-lg: 1.5rem;     /* 24px */
+  --fs-xl: 2rem;       /* 32px */
+
+  /* 📱 Breakpoints */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  /* 🔲 Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--font-primary);
+  font-weight: var(--font-regular);
+  background-color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+background: var(--amber);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+// Global container
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  
+}
+
+// Links
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// Section spacing
+section {
+  padding: 80px 0;
+}
+
+// Responsive design
+@media (max-width: $breakpoint-md) {
+  .container {
+    padding: 0 15px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+}
+
+  
+
+.theme-toggle {
+    position: relative;
+    margin-left: 1rem;
+    z-index: 10;
+
+    &__input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        left: 10px;
+
+
+        &:focus-visible + .theme-toggle__label {
+            outline: 2px solid var(--amber);
+            outline-offset: 2px;
+            left: 8px;
+        }
+
+        &:checked + .theme-toggle__label {
+            background: var(--navy);
+            color: var(--text-primary);
+            left: 8px;
+
+            .theme-toggle__sun {
+                opacity: 0;
+                transform: rotate(90deg) scale(0.5);
+                left: 8px;
+            }
+
+            .theme-toggle__moon {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+    }
+
+    &__label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--amber);
+        border: 1px solid var(--navy);
+        border-radius: 50%;
+        box-shadow: 0 2px 4px var(--shadow-color);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        left: 8px;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+    }
+
+    &__sun, &__moon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        color: var(--navy);
+        left: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &__sun {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+        left: 10px;
+    }
+
+    &__moon {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+        left: 12px;
+    }
+}
+
+// Dark theme overrides
+[data-theme="dark"] {
+    .theme-toggle__label {
+        background: var(--navy);
+        border-color: var(--amber);
+        
+        &:hover {
+            background: var(--amber);
+            filter: brightness(1.1);
+        }
+
+        .theme-toggle__sun, .theme-toggle__moon {
+            color: var(--amber);
+        }
+    }
+}
+
+// Mobile theme toggle adjustments
+@media (max-width: 768px) {
+    .theme-toggle {
+        &__label {
+            width: 36px;
+            height: 36px;
+        }
+    }
+}
+  

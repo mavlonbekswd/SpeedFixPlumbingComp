@@ -1,0 +1,72 @@
+@use "sass:color";
+
+$charcoal: #284b63;
+$amber: #f6bd60;
+$beige: #eae5cf;
+
+.button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: var(--fs-base);
+  font-weight: var(--font-semibold);
+  color: var(--charcoal);
+  background-color: var(--amber);
+  border: 2px solid var(--charcoal);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  font-family: var(--font-family);
+
+  // Arrow icon
+  &::after {
+    content: "→";
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    transition: transform 0.3s ease;
+  }
+
+  // Background highlight on hover
+  &:hover {
+    background-color: var(--amber-dark);
+    color: var(--charcoal);
+    box-shadow: 0 0 0 5px rgba(255, 107, 43, 0.3);
+
+    &::after {
+      transform: translateY(-50%) scale(1);
+    }
+  }
+
+  // Bubble glow effect
+  &::before {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 60%);
+    top: -100%;
+    left: -100%;
+    animation: button-bubble 4s linear infinite;
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes button-bubble {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50%, 50%);
+  }
+}
