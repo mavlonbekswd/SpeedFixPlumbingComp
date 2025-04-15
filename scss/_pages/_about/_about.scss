@@ -400,6 +400,32 @@
 
         @media (max-width: 768px) {
             grid-template-columns: 1fr;
+            .story-text {
+              h2 {
+                font-size: var(--fs-lg);
+              }
+        
+              p {
+                font-size: var(--fs-sm);
+              }
+        
+              .achievements {
+                width: 100px;
+                height: 150px;
+                li{
+                  width: auto;
+                height: 120px;
+                  .number{
+                    font-size: 18px;
+                  }
+                  .label{
+                    font-size: 13px;
+                  }
+                }
+
+                
+              }
+            }
         }
     }
 
@@ -885,11 +911,7 @@
         }
     }
 
-    .our-story {
-        .achievements {
-            grid-template-columns: 1fr;
-        }
-    }
+    
 
     .value-card,
     .team-member {

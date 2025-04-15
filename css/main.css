@@ -656,11 +656,12 @@ section {
     width: 50px;
   }
   .header .navbar__logo img {
-    height: 180px;
+    height: 220px;
   }
   .header .navbar .header__cta .btn {
     padding: 1rem;
     font-size: 0.9rem;
+    margin-left: 100px;
   }
   .header .navbar .header__cta .btn i {
     margin-left: 0.25rem;
@@ -1004,7 +1005,7 @@ section {
     gap: 15px;
   }
   .hero-section .hero-content .hero-buttons .btn {
-    margin-left: 120px;
+    margin-left: 85px;
     width: 50%;
   }
 }
@@ -2229,10 +2230,28 @@ section {
     font-size: 20px;
   }
   .about__images .image-stack {
-    height: 400px;
+    height: 320px;
+    width: 370px;
   }
   .about__images .image-stack__item {
-    height: 300px;
+    height: 220px;
+  }
+  .about__images .floating-card {
+    width: 200px;
+    height: 100px;
+  }
+  .about__images .floating-card h4 {
+    font-size: 8px;
+  }
+  .about__images .experience-badge {
+    left: 1px;
+    bottom: 1px;
+  }
+  .about__images .experience-badge .number {
+    font-size: 17px;
+  }
+  .about__images .experience-badge .text {
+    font-size: 11px;
   }
 }
 
@@ -3332,13 +3351,13 @@ section {
 }
 @media (max-width: 768px) {
   .contact__emergency {
-    width: 380px;
-    height: 250px;
-    margin-left: 100px;
+    width: 340px;
+    height: 280px;
+    margin-left: 0px;
   }
   .contact__emergency .emergency-content {
     align-items: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     text-align: center;
   }
   .contact__emergency .emergency-content i {
@@ -3351,7 +3370,7 @@ section {
     font-size: var(--fs-sm);
   }
   .contact__emergency .emergency-content .btn-emergency {
-    padding: 10px 20px;
+    padding: 14px 20px;
     font-size: 14px;
     width: 150px;
     justify-content: center;
@@ -4985,6 +5004,7 @@ section .floating-icons .icon.fa-bolt::before {
   }
   .header .header .navbar__logo img {
     height: 180px;
+    margin-left: 100px;
   }
   .header .header .navbar .header__cta .btn {
     padding: 1rem;
@@ -5957,6 +5977,26 @@ section .floating-icons .icon.fa-bolt::before {
   .our-story .story-content {
     grid-template-columns: 1fr;
   }
+  .our-story .story-content .story-text h2 {
+    font-size: var(--fs-lg);
+  }
+  .our-story .story-content .story-text p {
+    font-size: var(--fs-sm);
+  }
+  .our-story .story-content .story-text .achievements {
+    width: 100px;
+    height: 150px;
+  }
+  .our-story .story-content .story-text .achievements li {
+    width: auto;
+    height: 120px;
+  }
+  .our-story .story-content .story-text .achievements li .number {
+    font-size: 18px;
+  }
+  .our-story .story-content .story-text .achievements li .label {
+    font-size: 13px;
+  }
 }
 .our-story .story-text .section-tag {
   display: inline-block;
@@ -6354,9 +6394,6 @@ section .floating-icons .icon.fa-bolt::before {
   }
   .about-hero .container p {
     font-size: var(--fs-md);
-  }
-  .our-story .achievements {
-    grid-template-columns: 1fr;
   }
   .value-card .icon,
   .team-member .icon {
