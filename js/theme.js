@@ -46,8 +46,9 @@ class ThemeToggle {
         if (savedTheme) {
             this.setTheme(savedTheme);
         } else {
-            this.setTheme(systemPrefersDark ? 'dark' : 'light');
+            this.setTheme('light'); // <== Always default to light
         }
+        
 
         // Add event listeners
         if (this.themeToggleInput) {
