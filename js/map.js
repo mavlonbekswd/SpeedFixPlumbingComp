@@ -1,328 +1,107 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     const locationCards = document.querySelectorAll('.location-card');
-//     const locationMarkers = document.querySelectorAll('.location-marker');
-//     const mapIframe = document.querySelector('.map-container iframe');
-//     const baseMapUrl = 'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=';
+// Modern map section switching logic
+// City data: update with your actual addresses and Google Maps embed links
+const cityData = {
+  cambridge: {
+    name: "Cambridge",
+    address: "Helen Close, Cambridge, CB5 5TW, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2445.0479296724957!2d0.1196283!3d52.2053371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d85d89f32a012d%3A0x63a320e1a35e3d21!2sCambridge%2C%20UK!5e0!3m2!1sen!2suk!4v1709561533971!5m2!1sen!2suk"
+  },
+  peterborough: {
+    name: "Peterborough",
+    address: "Peterborough, PE1, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.123456!2d-0.2405!3d52.5695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0x1234567890abcdef!2sPeterborough!5e0!3m2!1sen!2suk!4v1710000000000"
+  },
+  norwich: {
+    name: "Norwich",
+    address: "Norwich, NR1, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.654321!2d1.2974!3d52.6309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4875d9e2b1b1b1b1%3A0xabcdef1234567890!2sNorwich!5e0!3m2!1sen!2suk!4v1710000000001"
+  },
+  ipswich: {
+    name: "Ipswich",
+    address: "Ipswich, IP1, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.987654!2d1.1482!3d52.0567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d9a2e2b1b1b1b1%3A0xabcdefabcdefabcd!2sIpswich!5e0!3m2!1sen!2suk!4v1710000000002"
+  },
+  bedford: {
+    name: "Bedford",
+    address: "Bedford, MK40, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.111111!2d-0.4668!3d52.1361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0xabcdefabcdefabcd!2sBedford!5e0!3m2!1sen!2suk!4v1710000000003"
+  },
+  stevenage: {
+    name: "Stevenage",
+    address: "Stevenage, SG1, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.222222!2d-0.2027!3d51.9022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0xabcdefabcdefabcd!2sStevenage!5e0!3m2!1sen!2suk!4v1710000000004"
+  },
+  chelmsford: {
+    name: "Chelmsford",
+    address: "Chelmsford, CM1, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.333333!2d0.4692!3d51.7355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0xabcdefabcdefabcd!2sChelmsford!5e0!3m2!1sen!2suk!4v1710000000005"
+  },
+  colchester: {
+    name: "Colchester",
+    address: "Colchester, CO1, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.444444!2d0.8919!3d51.8959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0xabcdefabcdefabcd!2sColchester!5e0!3m2!1sen!2suk!4v1710000000006"
+  },
+  ely: {
+    name: "Ely",
+    address: "Ely, CB7, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.555555!2d0.2621!3d52.3994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0xabcdefabcdefabcd!2sEly!5e0!3m2!1sen!2suk!4v1710000000007"
+  },
+  thetford: {
+    name: "Thetford",
+    address: "Thetford, IP24, United Kingdom",
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.666666!2d0.7477!3d52.4138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876654e2b1b1b1b%3A0xabcdefabcdefabcd!2sThetford!5e0!3m2!1sen!2suk!4v1710000000008"
+  }
+};
 
-//     // Updated location coordinates for East of England
-//     const locations = {
-//         cambridge: { lat: 52.2053, lng: 0.1218, name: 'Cambridge' },
-//         peterborough: { lat: 52.5695, lng: -0.2405, name: 'Peterborough' },
-//         norwich: { lat: 52.6309, lng: 1.2974, name: 'Norwich' },
-//         ipswich: { lat: 52.0567, lng: 1.1482, name: 'Ipswich' },
-//         bedford: { lat: 52.1361, lng: -0.4668, name: 'Bedford' },
-//         stevenage: { lat: 51.9022, lng: -0.2027, name: 'Stevenage' },
-//         chelmsford: { lat: 51.7355, lng: 0.4692, name: 'Chelmsford' },
-//         colchester: { lat: 51.8959, lng: 0.8919, name: 'Colchester' },
-//         luton: { lat: 51.8787, lng: -0.4200, name: 'Luton' },
-//         stalbans: { lat: 51.7520, lng: -0.3343, name: 'St Albans' },
-//         watford: { lat: 51.6565, lng: -0.3903, name: 'Watford' },
-//         ely: { lat: 52.3994, lng: 0.2621, name: 'Ely' },
-//         thetford: { lat: 52.4138, lng: 0.7477, name: 'Thetford' },
-//         newmarket: { lat: 52.2453, lng: 0.4097, name: 'Newmarket' },
-//         bury: { lat: 52.2429, lng: 0.7147, name: 'Bury St Edmunds' }
-//     };
+// DOM elements
+const cards = document.querySelectorAll('.location-card');
+let mapIframe = document.getElementById('map-iframe');
+let mapAddress = document.getElementById('map-address');
 
-//     // Map styles
-//     const mapStyles = [
-//         {
-//             "featureType": "water",
-//             "elementType": "geometry",
-//             "stylers": [{"color": "#e9e9e9"}, {"lightness": 17}]
-//         },
-//         {
-//             "featureType": "landscape",
-//             "elementType": "geometry",
-//             "stylers": [{"color": "#f5f5f5"}, {"lightness": 20}]
-//         },
-//         {
-//             "featureType": "road.highway",
-//             "elementType": "geometry.fill",
-//             "stylers": [{"color": "#ffffff"}, {"lightness": 17}]
-//         },
-//         {
-//             "featureType": "road.highway",
-//             "elementType": "geometry.stroke",
-//             "stylers": [{"color": "#ffffff"}, {"lightness": 29}, {"weight": 0.2}]
-//         },
-//         {
-//             "featureType": "road.arterial",
-//             "elementType": "geometry",
-//             "stylers": [{"color": "#ffffff"}, {"lightness": 18}]
-//         },
-//         {
-//             "featureType": "road.local",
-//             "elementType": "geometry",
-//             "stylers": [{"color": "#ffffff"}, {"lightness": 16}]
-//         },
-//         {
-//             "featureType": "poi",
-//             "elementType": "geometry",
-//             "stylers": [{"color": "#f5f5f5"}, {"lightness": 21}]
-//         },
-//         {
-//             "featureType": "poi.park",
-//             "elementType": "geometry",
-//             "stylers": [{"color": "#dedede"}, {"lightness": 21}]
-//         },
-//         {
-//             "elementType": "labels.text.stroke",
-//             "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"lightness": 16}]
-//         },
-//         {
-//             "elementType": "labels.text.fill",
-//             "stylers": [{"saturation": 36}, {"color": "#333333"}, {"lightness": 40}]
-//         },
-//         {
-//             "elementType": "labels.icon",
-//             "stylers": [{"visibility": "off"}]
-//         },
-//         {
-//             "featureType": "administrative",
-//             "elementType": "geometry.fill",
-//             "stylers": [{"color": "#fefefe"}, {"lightness": 20}]
-//         },
-//         {
-//             "featureType": "administrative",
-//             "elementType": "geometry.stroke",
-//             "stylers": [{"color": "#fefefe"}, {"lightness": 17}, {"weight": 1.2}]
-//         }
-//     ];
+// If iframe doesn't exist, create and insert it
+if (!mapIframe) {
+  const mapSectionMap = document.querySelector('.map-section__map .map-container');
+  mapIframe = document.createElement('iframe');
+  mapIframe.id = 'map-iframe';
+  mapIframe.width = '100%';
+  mapIframe.height = '100%';
+  mapIframe.style.border = 'none';
+  mapIframe.setAttribute('allowfullscreen', '');
+  mapIframe.setAttribute('loading', 'lazy');
+  mapIframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+  if (mapSectionMap) mapSectionMap.appendChild(mapIframe);
+}
 
-//     // Function to update active state
-//     function updateActiveState(location) {
-//         // Update cards
-//         locationCards.forEach(card => {
-//             card.classList.toggle('active', card.dataset.location === location);
-//         });
+// If address doesn't exist, create and insert it
+if (!mapAddress) {
+  mapAddress = document.createElement('div');
+  mapAddress.id = 'map-address';
+  const mapSectionMap = document.querySelector('.map-section__map .map-container');
+  if (mapSectionMap) mapSectionMap.parentNode.insertBefore(mapAddress, mapSectionMap);
+}
 
-//         // Update markers
-//         locationMarkers.forEach(marker => {
-//             marker.classList.toggle('active', marker.dataset.location === location);
-//         });
+function setActiveCity(cityKey) {
+  // Remove active from all
+  cards.forEach(card => card.classList.remove('active'));
+  // Add active to selected
+  const activeCard = document.querySelector(`.location-card[data-location="${cityKey}"]`);
+  if (activeCard) activeCard.classList.add('active');
+  // Update address
+  if (mapAddress && cityData[cityKey]) {
+    mapAddress.innerHTML = `<div style="font-weight:600;color:var(--amber);font-size:1.1em;"><i class='fas fa-map-marker-alt'></i> ${cityData[cityKey].name}</div><div style="color:var(--navy);font-size:1em;">${cityData[cityKey].address}</div>`;
+  }
+  // Update map
+  if (mapIframe && cityData[cityKey]) {
+    mapIframe.src = cityData[cityKey].map;
+  }
+}
 
-//         // Update map location
-//         if (locations[location]) {
-//             mapIframe.src = baseMapUrl + encodeURIComponent(locations[location]);
-//         }
-//     }
+cards.forEach(card => {
+  card.addEventListener('click', function() {
+    const cityKey = this.dataset.location;
+    setActiveCity(cityKey);
+  });
+});
 
-//     // Add click event listeners to location cards
-//     locationCards.forEach(card => {
-//         card.addEventListener('click', function() {
-//             const location = this.dataset.location;
-//             updateActiveState(location);
-
-//             // Scroll marker into view on mobile
-//             if (window.innerWidth <= 991) {
-//                 const marker = document.querySelector(`.location-marker[data-location="${location}"]`);
-//                 marker.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//             }
-//         });
-//     });
-
-//     // Add click event listeners to map markers
-//     locationMarkers.forEach(marker => {
-//         marker.addEventListener('click', function() {
-//             const location = this.dataset.location;
-//             updateActiveState(location);
-
-//             // Scroll card into view on mobile
-//             if (window.innerWidth <= 991) {
-//                 const card = document.querySelector(`.location-card[data-location="${location}"]`);
-//                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//             }
-//         });
-//     });
-
-//     // Add hover effects
-//     locationCards.forEach(card => {
-//         card.addEventListener('mouseenter', function() {
-//             this.style.transform = 'translateY(-4px)';
-//             const location = this.dataset.location;
-//             const marker = document.querySelector(`.location-marker[data-location="${location}"]`);
-//             marker.querySelector('.marker-label').style.opacity = '1';
-//         });
-
-//         card.addEventListener('mouseleave', function() {
-//             this.style.transform = 'translateY(0)';
-//             const location = this.dataset.location;
-//             const marker = document.querySelector(`.location-marker[data-location="${location}"]`);
-//             if (!marker.classList.contains('active')) {
-//                 marker.querySelector('.marker-label').style.opacity = '0';
-//             }
-//         });
-//     });
-
-//     // Initialize the map when the DOM is loaded
-//     async function initMap() {
-//         // Map center coordinates (Cambridge)
-//         const center = { lat: 52.2053, lng: 0.1218 };
-
-//         // Create the map
-//         const map = new google.maps.Map(document.getElementById('google-map'), {
-//             zoom: 9,
-//             center: center,
-//             mapTypeId: 'roadmap',
-//             styles: [
-//                 {
-//                     "featureType": "water",
-//                     "elementType": "geometry",
-//                     "stylers": [{"color": "#e9e9e9"}, {"lightness": 17}]
-//                 },
-//                 {
-//                     "featureType": "landscape",
-//                     "elementType": "geometry",
-//                     "stylers": [{"color": "#f5f5f5"}, {"lightness": 20}]
-//                 },
-//                 {
-//                     "featureType": "road.highway",
-//                     "elementType": "geometry.fill",
-//                     "stylers": [{"color": "#ffffff"}, {"lightness": 17}]
-//                 },
-//                 {
-//                     "featureType": "road.highway",
-//                     "elementType": "geometry.stroke",
-//                     "stylers": [{"color": "#ffffff"}, {"lightness": 29}, {"weight": 0.2}]
-//                 },
-//                 {
-//                     "featureType": "road.arterial",
-//                     "elementType": "geometry",
-//                     "stylers": [{"color": "#ffffff"}, {"lightness": 18}]
-//                 },
-//                 {
-//                     "featureType": "road.local",
-//                     "elementType": "geometry",
-//                     "stylers": [{"color": "#ffffff"}, {"lightness": 16}]
-//                 },
-//                 {
-//                     "featureType": "poi",
-//                     "elementType": "geometry",
-//                     "stylers": [{"color": "#f5f5f5"}, {"lightness": 21}]
-//                 },
-//                 {
-//                     "featureType": "poi.park",
-//                     "elementType": "geometry",
-//                     "stylers": [{"color": "#dedede"}, {"lightness": 21}]
-//                 }
-//             ],
-//             disableDefaultUI: true,
-//             zoomControl: true,
-//             scrollwheel: false
-//         });
-
-//         // Define locations
-//         const locations = [
-//             { name: 'Cambridge', position: { lat: 52.2053, lng: 0.1218 }, active: true },
-//             { name: 'Peterborough', position: { lat: 52.5695, lng: -0.2405 } },
-//             { name: 'Norwich', position: { lat: 52.6309, lng: 1.2974 } },
-//             { name: 'Ipswich', position: { lat: 52.0567, lng: 1.1482 } },
-//             { name: 'Bedford', position: { lat: 52.1361, lng: -0.4668 } },
-//             { name: 'Stevenage', position: { lat: 51.9022, lng: -0.2027 } },
-//             { name: 'Chelmsford', position: { lat: 51.7355, lng: 0.4692 } },
-//             { name: 'Colchester', position: { lat: 51.8959, lng: 0.8919 } },
-//             { name: 'Ely', position: { lat: 52.3994, lng: 0.2621 } },
-//             { name: 'Thetford', position: { lat: 52.4138, lng: 0.7477 } }
-//         ];
-
-//         // Load the marker library
-//         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-//         // Create markers and circles for each location
-//         locations.forEach(location => {
-//             // Create marker element
-//             const markerElement = document.createElement('div');
-//             markerElement.className = 'custom-marker';
-//             markerElement.innerHTML = `
-//                 <div class="marker-pin" style="background-color: ${location.active ? '#FFD700' : '#003366'}">
-//                     <span class="marker-icon">📍</span>
-//                 </div>
-//             `;
-
-//             // Create advanced marker
-//             const marker = new AdvancedMarkerElement({
-//                 map,
-//                 position: location.position,
-//                 title: location.name,
-//                 content: markerElement
-//             });
-
-//             // Create service area circle
-//             const circle = new google.maps.Circle({
-//                 map,
-//                 center: location.position,
-//                 radius: 15000, // 15km radius
-//                 fillColor: '#003366',
-//                 fillOpacity: 0.1,
-//                 strokeColor: '#003366',
-//                 strokeOpacity: 0.2,
-//                 strokeWeight: 1
-//             });
-
-//             // Add click listener to marker
-//             marker.addListener('click', () => {
-//                 // Update marker colors
-//                 locations.forEach(loc => {
-//                     if (loc.marker) {
-//                         const pin = loc.marker.content.querySelector('.marker-pin');
-//                         pin.style.backgroundColor = (loc === location) ? '#FFD700' : '#003366';
-//                     }
-//                 });
-
-//                 // Pan to location
-//                 map.panTo(location.position);
-//                 map.setZoom(11);
-
-//                 // Update location cards
-//                 document.querySelectorAll('.location-card').forEach(card => {
-//                     if (card.querySelector('h3').textContent === location.name) {
-//                         card.classList.add('active');
-//                     } else {
-//                         card.classList.remove('active');
-//                     }
-//                 });
-//             });
-
-//             // Store marker reference
-//             location.marker = marker;
-//         });
-
-//         // Add click listeners to location cards
-//         document.querySelectorAll('.location-card').forEach(card => {
-//             card.addEventListener('click', () => {
-//                 const locationName = card.querySelector('h3').textContent;
-//                 const location = locations.find(loc => loc.name === locationName);
-
-//                 if (location) {
-//                     // Update marker colors
-//                     locations.forEach(loc => {
-//                         if (loc.marker) {
-//                             const pin = loc.marker.content.querySelector('.marker-pin');
-//                             pin.style.backgroundColor = (loc === location) ? '#FFD700' : '#003366';
-//                         }
-//                     });
-
-//                     // Pan to location
-//                     map.panTo(location.position);
-//                     map.setZoom(11);
-
-//                     // Update active state of cards
-//                     document.querySelectorAll('.location-card').forEach(c => {
-//                         c.classList.remove('active');
-//                     });
-//                     card.classList.add('active');
-//                 }
-//             });
-//         });
-
-//         // Fit map to show all locations
-//         const bounds = new google.maps.LatLngBounds();
-//         locations.forEach(location => {
-//             bounds.extend(location.position);
-//         });
-//         map.fitBounds(bounds);
-//     }
-
-//     // Initialize the map
-//     initMap();
-// }); 
+// Trigger first city on load
+if (cards.length) setActiveCity(cards[0].dataset.location); 

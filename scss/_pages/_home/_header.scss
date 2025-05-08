@@ -266,7 +266,7 @@
 
     .navbar {
       position: relative;
-      flex-direction: row-reverse; // toggle chapda, logo o‘ngda
+      flex-direction: row-reverse; // toggle chapda, logo o'ngda
       justify-content: space-between;
       width: 100%;
 
@@ -368,6 +368,90 @@
           span {
             display: none;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .header .container {
+    padding: 0.25rem 0.5rem;
+    height: 40px;
+  }
+  
+  .header .navbar {
+    &__logo {
+      width: 28px;
+      height: 28px;
+      a {
+        width: 28px;
+        height: 28px;
+        img {
+          height: 120px !important; 
+          width: auto;
+        }
+      }
+    }
+    
+    &__toggle {
+      font-size: 1rem;
+      margin-left: -5px;
+      i {
+        font-size: 1rem;
+      }
+    }
+    
+    .header__cta {
+      .btn {
+        padding: 0.7rem 0.5rem !important;
+        font-size: 0.7rem;
+        margin-left: 0;
+        i {
+          font-size: 0.7rem;
+          margin-left: 0.1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .header .container {
+    padding: 0.1rem 0.25rem;
+    height: 24px;
+  }
+  
+  .header .navbar {
+    &__logo {
+      width: 20px;
+      height: 20px;
+      a {
+        width: 20px;
+        height: 20px;
+        img {
+          height: 12px;
+          width: auto;
+        }
+      }
+    }
+    
+    &__toggle {
+      font-size: 0.8rem;
+      margin-left: -3px;
+      i {
+        font-size: 0.8rem;
+      }
+    }
+    
+    .header__cta {
+      .btn {
+        padding: 0.03rem 0.08rem;
+        font-size: 0.6rem;
+        margin-left: 0;
+        i {
+          font-size: 0.6rem;
+          margin-left: 0.08rem;
         }
       }
     }
